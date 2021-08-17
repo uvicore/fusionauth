@@ -1,0 +1,12 @@
+428c428
+<             self.close()
+---
+>             await self.close()
+523c523
+<     def close(self):
+---
+>     async def close(self):
+526c526
+<             cb()
+---
+>             await cb()

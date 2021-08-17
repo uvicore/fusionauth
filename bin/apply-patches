@@ -1,0 +1,4 @@
+# Ensure running from base package path
+bin="$( cd "$(dirname "$0")" ; pwd -P )"; cd $bin
+
+patch -p1 $(poetry env info -p)/lib/*/site-packages/asyncclick/core.py < ./patches/asyncclick.txt
