@@ -23,6 +23,10 @@ class App(Model['App'], metaclass=ModelMetaclass):
         description='App Name',
     )
 
+    data: Dict = Field('data',
+        description='App Data',
+    )
+
     display_name: str = Field(None,
         evaluate=lambda row: row['data']['displayName'] if 'data' in row else row['name']
     )

@@ -57,12 +57,22 @@ class Fusionauth(ServiceProvider, Cli):
             commands={},
         )
 
-        # Apps command
+        # App commands
         self.commands(
-            group='fusionauth:apps',
+            group='fusionauth:app',
             help='FusionAuth Applications',
             commands={
-                'list': 'mreschke.fusionauth.commands.apps.list',
-                'get': 'mreschke.fusionauth.commands.apps.get',
+                'get': 'mreschke.fusionauth.commands.app.get',
+                'list': 'mreschke.fusionauth.commands.app.list',
+            },
+        )
+
+        # User commands
+        self.commands(
+            group='fusionauth:user',
+            help='FusionAuth Users',
+            commands={
+                'get': 'mreschke.fusionauth.commands.user.get',
+                'search': 'mreschke.fusionauth.commands.user.search',
             },
         )

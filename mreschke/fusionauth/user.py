@@ -6,6 +6,7 @@ from uvicore.support.dumper import dump, dd
 
 
 async def find(id_or_email: str, tenant: Optional[str] = None) -> User:
+    """Get one user by ID or email"""
     tenant = await fa.verify_tenant(tenant)
 
     # Get by ID or email
@@ -15,7 +16,7 @@ async def find(id_or_email: str, tenant: Optional[str] = None) -> User:
 
     async def query():
         r = await fa.get(url, tenant)
-        dump(r)
+        #dump(r)
         return User.mapper(r.get('user')).model()
     return await uvicore.cache.remember(tenant + '/' + url, query)
 

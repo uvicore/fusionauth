@@ -10,7 +10,7 @@ config = {
     'url': env('FUSIONAUTH_URL', 'https://auth.example.com'),
 
     # Default tenant if none defined
-    'default_tenant': env('FUSIONAUTH_DEFAULT_TENANT', 'Default'),
+    'default_tenant': env('FUSIONAUTH_DEFAULT_TENANT', 'default'),
 
     # FusionAuth master API key
     # Optional if you want to access multi-tenant endpoints like /tenants

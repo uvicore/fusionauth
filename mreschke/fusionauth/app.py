@@ -5,12 +5,9 @@ from uvicore.typing import Optional, List
 from uvicore.support.dumper import dump, dd
 from .models import App
 
-"""FusionAuth application repository.
-Apps should be read-only.  IAM will not be creating or managing apps, only viewing.
-"""
 
 async def find(id_or_name: str, tenant: Optional[str] = None) -> App:
-    """Get one application by name or ID"""
+    """Get one application by ID or name"""
     tenant = await fa.verify_tenant(tenant)
 
     # Get application by name
