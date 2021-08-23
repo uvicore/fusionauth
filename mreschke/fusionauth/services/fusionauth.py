@@ -76,3 +76,13 @@ class Fusionauth(ServiceProvider, Cli):
                 'search': 'mreschke.fusionauth.commands.user.search',
             },
         )
+
+        # Group commands
+        self.commands(
+            group='fusionauth:group',
+            help='FusionAuth Groups',
+            commands={
+                'get': 'mreschke.fusionauth.commands.group.get',
+                'list': 'mreschke.fusionauth.commands.group.list',
+            },
+        )

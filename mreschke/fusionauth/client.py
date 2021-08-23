@@ -54,6 +54,8 @@ class Client:
             if r.status == 200:
                 return await r.json()
             try:
+                #dump('x')
+                #detail='x'
                 detail = await r.json()
             except:
                 detail = await r.text()
@@ -68,10 +70,11 @@ class Client:
             raise Exception(message)
 
     async def exception(self, message: str, *, status_code=503):
-        raise SmartException(status_code, message)
+        raise SmartException(message, status_code)
         # if uvicore.app.is_http:
         #     from uvicore.http.exceptions import HTTPException
         #     raise HTTPException(detail=message, status_code=status_code)
         # else:
+        #     dump('xxxxx')
         #     await uvicore.ioc.make('aiohttp').close()
         #     raise Exception(message + ' - Status Code ' + str(status_code))

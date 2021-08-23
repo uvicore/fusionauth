@@ -12,7 +12,8 @@ packages = [
 
 [tool.poetry.dependencies]
 python = ">=3.7,<4.0"
-uvicore = {path = "../framework", extras = ["database"], develop = true}
+#uvicore = "0.1.*"
+uvicore = {path = "../framework", develop = true}
 
 [tool.poetry.dev-dependencies]
 pytest = "6.2.*"

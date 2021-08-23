@@ -58,9 +58,6 @@ config = {
         'uvicore.foundation': {
             'provider': 'uvicore.foundation.services.Foundation',
         },
-        # 'uvicore.orm': {
-        #     'provider': 'uvicore.orm.services.Orm',
-        # },
         'uvicore.http_client': {
             'provider': 'uvicore.http_client.services.HttpClient',
         },
