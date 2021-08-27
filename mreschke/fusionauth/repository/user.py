@@ -1,5 +1,5 @@
 import uvicore
-from .client import Client as fa
+from mreschke.fusionauth.client import Client as fa
 from uvicore.typing import Dict, List, Optional
 from uvicore.support.dumper import dump, dd
 from uvicore.exceptions import SmartException

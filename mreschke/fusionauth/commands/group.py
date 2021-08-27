@@ -1,5 +1,5 @@
 import uvicore
-from mreschke.fusionauth import group
+from mreschke.fusionauth.repository import group
 from uvicore.support.dumper import dump, dd
 from uvicore.exceptions import SmartException
 from mreschke.fusionauth.support.json import to
