@@ -26,7 +26,7 @@ async def find(id_or_name: str, tenant: Optional[str] = None) -> Dict:
             return Dict(response['group'])
         return await uvicore.cache.remember(tenant + '/' + url, query)
     except SmartException as e:
-        return None
+        raise SmartException(e.detail, message='Cannot query ' + url)
 
 
 async def list(tenant: Optional[str] = None) -> List[Dict]:
@@ -40,4 +40,4 @@ async def list(tenant: Optional[str] = None) -> List[Dict]:
             return [Dict(x) for x in response.get('groups')]
         return await uvicore.cache.remember(tenant + '/' + url, query)
     except SmartException as e:
-        return None
+        raise SmartException(e.detail, message='Cannot query ' + url)

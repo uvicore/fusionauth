@@ -20,7 +20,7 @@ async def find(id_or_email: str, tenant: Optional[str] = None) -> Dict:
             return Dict(response['user'])
         return await uvicore.cache.remember(tenant + '/' + url, query)
     except SmartException as e:
-        return None
+        raise SmartException(e.detail, message='Cannot query ' + url)
 
 
 async def search(query: str, page: int = 1, limit: int = 25, tenant: Optional[str] = None) -> List[Dict]:
@@ -39,4 +39,4 @@ async def search(query: str, page: int = 1, limit: int = 25, tenant: Optional[st
             return [Dict(x) for x in response.get('users')]
         return await uvicore.cache.remember(tenant + '/' + url, query)
     except SmartException as e:
-        return None
+        raise SmartException(e.detail, message='Cannot query ' + url)

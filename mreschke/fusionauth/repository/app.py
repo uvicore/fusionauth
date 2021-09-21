@@ -26,17 +26,18 @@ async def find(id_or_name: str, tenant: Optional[str] = None) -> Dict:
             return Dict(response['application'])
         return await uvicore.cache.remember(tenant + '/' + url, query)
     except SmartException as e:
-        return None
+        raise SmartException(e.detail, message='Cannot query ' + url)
 
 async def list(tenant: Optional[str] = None) -> List[Dict]:
     """Get all applications"""
     tenant = await fa.verify_tenant(tenant)
 
     url = 'api/application'
+    response = ''
     try:
         async def query():
             response = await fa.get(url, tenant)
             return [Dict(x) for x in response.get('applications')]
         return await uvicore.cache.remember(tenant + '/' + url, query)
     except SmartException as e:
-        return None
+        raise SmartException(e.detail, message='Cannot query ' + url)

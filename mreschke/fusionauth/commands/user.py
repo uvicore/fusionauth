@@ -16,7 +16,9 @@ async def get(id_or_email: str, tenant: str, json: bool):
     try:
         dump(to(json, await user.find(id_or_email, tenant=tenant)))
     except SmartException as e:
-        exit(e.detail)
+        #print(e.detail)
+        print(e.message)
+        exit(e.status_code)
 
 
 @command()
@@ -29,6 +31,6 @@ async def search(query: str, tenant: str, json: bool):
     try:
         dump(to(json, await user.search(query, tenant=tenant)))
     except SmartException as e:
-        exit(e.detail)
-
-
+        #print(e.detail)
+        print(e.message)
+        exit(e.status_code)

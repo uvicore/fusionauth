@@ -17,7 +17,9 @@ async def get(id_or_name: str, tenant: str, json: bool):
     try:
         dump(to(json, await group.find(id_or_name, tenant=tenant)))
     except SmartException as e:
-        exit(e.detail)
+        #print(e.detail)
+        print(e.message)
+        exit(e.status_code)
 
 
 @command()
@@ -29,6 +31,9 @@ async def list(tenant: str, json: bool):
     try:
         dump(to(json, await group.list(tenant=tenant)))
     except SmartException as e:
-        exit(e.detail)
+        #print(e.detail)
+        print(e.message)
+        exit(e.status_code)
+
 
 
