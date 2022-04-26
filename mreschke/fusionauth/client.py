@@ -1,4 +1,5 @@
 import uvicore
+from uvicore.configuration import env
 from uvicore.support.dumper import dump, dd
 from uvicore.typing import Dict
 from uvicore.exceptions import SmartException

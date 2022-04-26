@@ -23,11 +23,10 @@ async def find(id_or_name: str) -> Dict:
     url = URL + '/' + id_or_name
     try:
         async def query():
-            response = await fa.get(url, default_tenant)
+            response = await fa.get(url, default_tenant, master_key = True)
             return Dict(response['tenant'])
         return await uvicore.cache.remember(default_tenant + '/' + url, query)
     except SmartException as e:
-        dump(e)
         raise SmartException(e.detail, message='Cannot query ' + url)
 
 
@@ -38,7 +37,7 @@ async def list() -> List[Dict]:
     response = ''
     try:
         async def query():
-            response = await fa.get(url, tenant)
+            response = await fa.get(url, tenant, master_key = True)
             if not response: response['tenants'] = []
             return [Dict(x) for x in response.get('tenants')]
         return await uvicore.cache.remember(tenant + '/' + url, query)

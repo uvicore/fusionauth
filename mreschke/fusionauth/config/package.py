@@ -16,12 +16,10 @@ config = {
     # Optional if you want to access multi-tenant endpoints like /tenants
     'master_key': env('FUSIONAUTH_KEY_MASTER', None),
 
-    # FusionAuth tenant API keys
-    # If a tenant is not defined here or the key is empty, tenant access is denied
-    'tenant_keys': {
-        'default': env('FUSIONAUTH_KEY_TENANT_DEFAULT', None),
-        'tgb': env('FUSIONAUTH_KEY_TENANT_TGB', None),
-    },
+    # FusionAuth tenants (short names, does not have to match actual FusionAuth tenant names)
+    # See at bottom, there is a config override to add tenant_keys which is
+    # a dynamic Dict based on all tenants ENV vars
+    'tenants': env.list('FUSIONAUTH_TENANTS', ['default']),
 
 
     # --------------------------------------------------------------------------
@@ -64,3 +62,10 @@ config = {
     }),
 
 }
+
+
+# Override the config with dynamic ENV variables
+config['tenant_keys'] = {}
+for tenant in config['tenants']:
+    config['tenant_keys'][tenant] = env('FUSIONAUTH_KEY_TENANT_' + tenant.upper(), None)
+
