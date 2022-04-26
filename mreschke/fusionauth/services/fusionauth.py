@@ -86,3 +86,13 @@ class Fusionauth(ServiceProvider, Cli):
                 'list': 'mreschke.fusionauth.commands.group.list',
             },
         )
+
+        # Tenant commands
+        self.commands(
+            group='fusionauth:tenant',
+            help='FusionAuth Tenants',
+            commands={
+                'get': 'mreschke.fusionauth.commands.tenant.get',
+                'list': 'mreschke.fusionauth.commands.tenant.list',
+            },
+        )

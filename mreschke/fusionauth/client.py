@@ -1,5 +1,6 @@
 import uvicore
 from uvicore.support.dumper import dump, dd
+from uvicore.typing import Dict
 from uvicore.exceptions import SmartException
 
 
@@ -51,6 +52,73 @@ class Client:
 
         # Async aiohttp GET
         async with http.get(url, headers={'Authorization': key}) as r:
+            #dump(r)
+            if r.status == 200:
+                return await r.json()
+            try:
+                #dump('x')
+                #detail='x'
+                detail = await r.json()
+            except:
+                detail = await r.text()
+            await self.exception(detail or 'Not Found', status_code=r.status)
+
+    async def post(self, path: str, tenant: str = None, master_key: bool = False, json: Dict = None):
+        # Get aiohttp client session from IoC singleton
+        http = uvicore.ioc.make('aiohttp')
+
+        # Get proper API key
+        key = await self.api_key(tenant, master_key)
+
+        # Get full URL
+        url = await self.url(path)
+
+        async with http.post(url, json=json, headers={'Authorization': key}) as r:
+            #dump(r)
+            if r.status == 200:
+                return await r.json()
+            try:
+                #dump('x')
+                #detail='x'
+                detail = await r.json()
+            except:
+                detail = await r.text()
+            await self.exception(detail or 'Not Found', status_code=r.status)
+
+    async def put(self, path: str, tenant: str = None, master_key: bool = False, json: Dict = None):
+        # Get aiohttp client session from IoC singleton
+        http = uvicore.ioc.make('aiohttp')
+
+        # Get proper API key
+        key = await self.api_key(tenant, master_key)
+
+        # Get full URL
+        url = await self.url(path)
+
+        async with http.put(url, json=json, headers={'Authorization': key}) as r:
+            #dump(r)
+            if r.status == 200:
+                return await r.json()
+            try:
+                #dump('x')
+                #detail='x'
+                detail = await r.json()
+            except:
+                detail = await r.text()
+            await self.exception(detail or 'Not Found', status_code=r.status)
+
+    async def patch(self, path: str, tenant: str = None, master_key: bool = False, json: Dict = None):
+        # Get aiohttp client session from IoC singleton
+        http = uvicore.ioc.make('aiohttp')
+
+        # Get proper API key
+        key = await self.api_key(tenant, master_key)
+
+        # Get full URL
+        url = await self.url(path)
+
+        async with http.patch(url, json=json, headers={'Authorization': key}) as r:
+            #dump(r)
             if r.status == 200:
                 return await r.json()
             try:
