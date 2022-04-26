@@ -37,6 +37,7 @@ async def list(tenant: Optional[str] = None) -> List[Dict]:
     try:
         async def query():
             response = await fa.get(url, tenant)
+            if not response: response['groups'] = []
             return [Dict(x) for x in response.get('groups')]
         return await uvicore.cache.remember(tenant + '/' + url, query)
     except SmartException as e:
